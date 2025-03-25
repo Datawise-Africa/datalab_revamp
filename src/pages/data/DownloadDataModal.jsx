@@ -515,7 +515,9 @@ const [message, setMessage] = useState(""); // For success/error messages
       <h2 className="text-lg text-[#4B5563] font-semibold">Steps</h2>
       <p className="text-[#4B5563]">1. Click the institution type with which you want to download the dataset.</p>
       <p className="text-[#4B5563]">2. Enter your email that matches the institution you chose in step 1.</p>
-      <p className="text-[#4B5563]">3. Verify your Email, then click "Verification Code" to receive your OTP.</p>
+      <p className="text-[#4B5563]">
+  3. Verify your Email, then click &apos;Verification Code&apos; to receive your OTP.
+</p>
 
       <div className="grid grid-cols-2 gap-4 mt-4">
         {[
