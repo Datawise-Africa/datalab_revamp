@@ -9,14 +9,18 @@ const DatasetHeader = ({ handleAuthModalToggle, onSearchResults, onSearchReset }
   const { state, dispatch, actions } = useAuth();
 
   return (
-    <div className='flex items-center justify-between py-4 gap-12'>
+    <div className='flex items-center justify-between py-8 gap-12'>
       <div className='flex items-center space-x-1'>
         <img src={datalab} alt="Datalab Logo" className="w-6 h-8" />
-        <h2 className="h4 text-n-14">Datalab</h2>
+        <h2 className="h4 text-xl font-bold ">Datalab <span className="text-sm font-semibold ">by Datawise Africa </span></h2>
       </div>
+
+
       <div className="hidden lg:flex flex-grow max-w-xl">
         <SearchDatasets onSearchResults={onSearchResults} onSearchReset={onSearchReset} className="w-full" />
       </div>
+
+
       <div className="">
         {state.userId ? (
           <>

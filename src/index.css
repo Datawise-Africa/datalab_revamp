@@ -16,7 +16,7 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#0E0C15] text-[#ddeeff] text-base;
+    @apply font-sans bg-white  text-[#101827] text-base;
   }
 }
 
