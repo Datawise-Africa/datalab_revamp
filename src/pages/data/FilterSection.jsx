@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const FilterSection = ({ title, options, category, filters, setFilters }) => {
   // Handle checkbox toggle
@@ -7,7 +7,7 @@ const FilterSection = ({ title, options, category, filters, setFilters }) => {
       ...prevFilters,
       [category]: prevFilters[category].includes(value)
         ? prevFilters[category].filter((item) => item !== value)
-        : [...prevFilters[category], value]
+        : [...prevFilters[category], value],
     }));
   };
 
@@ -17,14 +17,13 @@ const FilterSection = ({ title, options, category, filters, setFilters }) => {
       <div className="flex flex-col space-y-2">
         {options.map((option, index) => (
           <label key={index} className="flex items-center space-x-2">
-
             <input
               type="checkbox"
-              className="form-checkbox"
+              className="form-checkbox "
               onChange={() => handleFilterChange(option)}
               checked={filters[category].includes(option)}
             />
-            
+
             <span>{option}</span>
           </label>
         ))}
@@ -34,11 +33,11 @@ const FilterSection = ({ title, options, category, filters, setFilters }) => {
 };
 
 FilterSection.propTypes = {
-  title: PropTypes.string.isRequired, 
-  options: PropTypes.arrayOf(PropTypes.string).isRequired, 
-  category: PropTypes.string.isRequired, 
+  title: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  category: PropTypes.string.isRequired,
   filters: PropTypes.object.isRequired,
-  setFilters: PropTypes.func.isRequired, 
+  setFilters: PropTypes.func.isRequired,
 };
 
 export default FilterSection;
