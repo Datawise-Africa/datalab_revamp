@@ -62,7 +62,7 @@ const DatasetPreview = ({ dataFiles }) => {
                             {csvData.slice(0, 20).map((row, rowIndex) => (
                                 <tr key={rowIndex} className=''>
                                     {Object.values(row).map((value, cellIndex) => (
-                                        <td key={cellIndex} className='border border-[#CAC6DD] border-r border-l px-4 py-2 last:border-r-0'>
+                                        <td key={cellIndex} className='border border-[#CAC6DD] text-black border-r border-l px-4 py-2 last:border-r-0'>
                                             {value}
                                         </td>
                                     ))}
