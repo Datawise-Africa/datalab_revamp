@@ -26,7 +26,7 @@ const DatasetCard = ({
   };
   const renderStars = (rating) => {
     if (rating === null || rating === 0) {
-      return <span className="text-gray-500">No ratings yet</span>; // Show a message instead of stars
+      return <span className="text-gray-500">No ratings yet</span>; 
     }
   
     return [...Array(5)].map((_, index) => (
@@ -42,7 +42,7 @@ const DatasetCard = ({
       <div className="flex justify-between">
         <h3 className="font-semibold text-xl">{dataset.title}</h3>
         <div>
-          <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+          <p className="bg-[#F3F4F6] text-[#0E0C15] px-2 rounded-md">
             {dataset.is_premium ? `$${dataset.price}` : "Free"}
           </p>
         </div>
@@ -63,7 +63,7 @@ const DatasetCard = ({
         {dataset.tags.map((tag, index) => (
           <div
             key={index}
-            className="bg-gray-800 text-[#ddeeff] rounded-lg px-3 py-1 text-xs"
+            className="bg-[#EFFDF4] text-[#101827] font-bold rounded-lg px-3 py-1 text-xs"
           >
             {tag}
           </div>
@@ -75,12 +75,12 @@ const DatasetCard = ({
           ([profiteer, status], index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-lg px-2 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+              className="bg-[#EFFDF4] rounded-lg px-2 py-1 text-sm font-bold text-[#101827] flex items-center gap-1"
             >
               <img
                 src={profiteerIcons[profiteer]}
                 alt={`${profiteer} icon`}
-                className="w-3 h-3"
+                className="w-3 h-3 "
               />
               <span>
                 {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
@@ -111,30 +111,30 @@ const DatasetCard = ({
       <div className="pt-5 flex flex-wrap space-x-3">
         <div className="flex items-center">
           <img src={spinning_timer_icon} alt="timer" className="w-4 h-4" />
-          <span className="ml-1 text-[#ddeeff] text-xs">
+          <span className="ml-1 text-[#101827] text-xs">
             Created: {dataset.created_at}
           </span>
         </div>
         <div className="flex items-center">
           <img src={database_icon} alt="database" className="w-4 h-4" />
-          <span className="ml-1 text-[#ddeeff] text-xs">
+          <span className="ml-1 text-[#101827] text-xs">
             CSV ({dataset.size_bytes})
           </span>
         </div>
         <div className="flex items-center">
-          <img src={download_icon} alt="download" className="w-4 h-4" />
-          <span className="ml-1 text-[#ddeeff] text-xs">
+          <img src={download_icon} alt="download" className="w-4 h-4 "  />
+          <span className="ml-1 text-[#101827] text-xs">
             {dataset.download_count} downloads
           </span>
         </div>
       </div>
 
-      <hr className="mt-8 border-t border-n-3 -mx-6" />
+      <hr className="mt-8 border-t border-[#ddeeff] -mx-6" />
 
       <div className="mt-4 flex justify-between">
         <button
           onClick={() => handleSingleDataModal(dataset)}
-          className="border py-2 px-3 rounded-xl bg-[#0E0C15] hover:bg-[#252134] text-[#ddeeff] flex items-center space-x-1"
+          className=" py-2 px-3 rounded-xl bg-[#0E0C15] hover:bg-[#252134] text-[#ddeeff] flex items-center space-x-1"
         >
           <img src={view_icon} alt="View" className="w-6 h-6" />
           <span>View Details</span>
@@ -142,7 +142,7 @@ const DatasetCard = ({
 
         <button
           onClick={() => handleDownloadDataClick(dataset)}
-          className="border py-2 px-3 rounded-xl bg-[#ddeeff] hover:bg-[#FFC876] text-[#0E0C15] flex items-center space-x-1"
+          className=" py-2 px-3 rounded-xl bg-[#ddeeff] hover:bg-[#FFC876] text-[#0E0C15] flex items-center space-x-1"
         >
           <img src={download_arrow_icon} alt="Download" className="w-6 h-6" />
           <span>Download</span>

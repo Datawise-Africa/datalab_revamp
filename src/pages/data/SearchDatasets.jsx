@@ -38,7 +38,7 @@ const SearchDatasets = ({ className, onSearchResults, onSearchReset }) => {
     };
 
     return (
-        <div className={`p-2 flex flex-col bg-n-7 rounded-lg ${className}`}>
+        <div className={`p-2 flex flex-col bg-n-7 rounded-xl border border-2 border-[#E5E7EB] ${className}`}>
             <div className="flex items-center">
                 <input 
                     type="text" 
@@ -50,7 +50,7 @@ const SearchDatasets = ({ className, onSearchResults, onSearchReset }) => {
                 />
                 <button className="ml-2" aria-label="Search" onClick={fetchResults}>
                     <svg 
-                        className="h-6 w-6 text-white" 
+                        className="h-6 w-6 text-[black]" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"

@@ -9,7 +9,7 @@ const SortData = ({ sortIsOpen, toggleDropdown, onSort }) => {
                 <p>Sort by</p>
             </div>
             {sortIsOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-[#15131D] border border-[#757185] rounded-md shadow-lg">
+                <div className="absolute right-0 mt-2 w-40 bg-[#FFFFFF] rounded-md shadow-lg">
                     {sortOptions.map((option, index) => (
                         <div 
                             key={index} 
