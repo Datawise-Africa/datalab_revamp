@@ -348,107 +348,112 @@ const [message, setMessage] = useState(""); // For success/error messages
       title: "Overview",
       details: (
         <>
-          <div className="flex justify-between">
-            <h3 className="font-semibold text-xl">{dataset?.title}</h3>
+        <div className="bg-white p-4 rounded-md shadow">
+          <div className="flex justify-between bg-white">
+            <h3 className="font-semibold text-[#4B5563] text-xl">{dataset?.title}</h3>
             <div>
-              <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+              <p className="bg-white text-[#0E0C15] px-2 rounded-md">
                 {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
               </p>
             </div>
           </div>
-          {/* <p className='pt-2'>{dataset?.description}</p> */}
+    
+          {/* Profiteers Section */}
           <div className="pt-2 flex flex-wrap gap-2">
-            {Object.entries(dataset?.profiteers || {}).map(
-              ([profiteer, status], Pindex) => (
-                <div
-                  key={Pindex}
-                  className="bg-gray-800 rounded-lg px-1 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
-                >
-                  <img
-                    src={profiteerIcons[profiteer]}
-                    alt={`${profiteer} icon`}
-                    className="w-3 h-3"
-                  />
-                  <span>
-                    {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
-                  </span>
-                  {status ? (
-                    <FaCheck className="text-green-500" />
-                  ) : (
-                    <FaTimes className="text-red-500" />
-                  )}
-                </div>
-              )
-            )}
-          </div>
-
-          <div className="pt-4">
-            <h4 className="font-semibold">Intended Use</h4>
-            <select
-              id="intended_use"
-              name="intended_use" // Important: Add a 'name' attribute
-              value={formData.intended_use}
-              onChange={handleInputChange}
-              className="w-full border border-[#ADA8C3] bg-gray-100 text-gray-500 rounded-md p-2"
-            >
-              <option value="" className="">
-                How do you intend to use this dataset ? Select one option
-              </option>
-              <option className="text-black  " value="academic-research">
-                Academic Research
-              </option>
-              <option className="text-black  " value="commercial-analysis">
-                Commercial Analysis
-              </option>
-              <option className="text-black  " value="government-policy">
-                Government Policy
-              </option>
-            </select>
-          </div>
-
-          <div className="pt-6">
-            <h4 className="font-semibold">Project Description</h4>
-            <textarea
-              className="w-full border border-[#ADA8C3] bg-gray-100 text-black rounded-md p-2"
-              placeholder="What is your project about ..."
-              type="text"
-              id="project_description"
-              name="project_description" // Important: Add a 'name' attribute
-              value={formData.project_description}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="pt-4 p-4 ">
-            <div>
-              <p className="text-lg">License Summary</p>
-              <div className="flex items-center mt-4 space-x-2">
-                <AiOutlineInfoCircle className="text-xl" />
-                <span className="">
-                  Non-commercial use for research and educational purposes only.
+            {Object.entries(dataset?.profiteers || {}).map(([profiteer, status], Pindex) => (
+              <div
+                key={Pindex}
+                className="bg-gray-800 rounded-lg px-2 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+              >
+                <img
+                  src={profiteerIcons[profiteer]}
+                  alt={`${profiteer} icon`}
+                  className="w-3 h-3"
+                />
+                <span>
+                  {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
                 </span>
+                {status ? (
+                  <FaCheck className="text-green-500" />
+                ) : (
+                  <FaTimes className="text-red-500" />
+                )}
               </div>
-
-              <p className="mt-4 text-lg">Creator Control Notice</p>
-              <div className="flex items-center mt-4 space-x-2 bg-yellow-50 p-2 text-black rounded-md">
-                <AiOutlineInfoCircle />
-                <span className="text-l">
-                  Dataset Creators can restrict access if terms are abused.
-                </span>
-              </div>
+            ))}
+          </div>
+    
+          {/* Intended Use Section */}
+          <div className="pt-4 bg-white">
+            <h4 className="font-semibold text-[#4B5563]">Intended Use</h4>
+            <div className="mt-2">
+              <select
+                id="intended_use"
+                name="intended_use"
+                value={formData.intended_use}
+                onChange={handleInputChange}
+                className="w-full border border-[#ADA8C3] bg-gray-100 text-gray-500 rounded-md p-2"
+              >
+                <option value="">How do you intend to use this dataset? Select one option</option>
+                <option className="text-[#4B5563]" value="academic-research">
+                  Academic Research
+                </option>
+                <option className="text-[#4B5563]" value="commercial-analysis">
+                  Commercial Analysis
+                </option>
+                <option className="text-[#4B5563]" value="government-policy">
+                  Government Policy
+                </option>
+              </select>
             </div>
           </div>
+    
+          {/* Project Description */}
+          <div className="pt-6 bg-white">
+            <h4 className="font-semibold text-[#4B5563]">Project Description</h4>
+            <div className="mt-2">
+              <textarea
+                className="w-full border border-[#ADA8C3] bg-gray-100 text-[#4B5563] rounded-md p-2"
+                placeholder="What is your project about ..."
+                id="project_description"
+                name="project_description"
+                value={formData.project_description}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+    
+          {/* License Summary & Creator Control */}
+          <div className="pt-4 p-4 bg-white rounded-md">
+            <p className="text-lg text-[#4B5563]">License Summary</p>
+            <div className="flex items-center mt-4 space-x-2">
+              <AiOutlineInfoCircle className="text-xl text-[#4B5563]" />
+              <span className="text-[#4B5563]">
+                Non-commercial use for research and educational purposes only.
+              </span>
+            </div>
+    
+            <p className="mt-4 text-lg text-[#4B5563]">Creator Control Notice</p>
+            <div className="flex items-center mt-4 space-x-2 bg-yellow-50 p-2 text-[#4B5563] rounded-md">
+              <AiOutlineInfoCircle />
+              <span className="text-[#4B5563]">
+                Dataset Creators can restrict access if terms are abused.
+              </span>
+            </div>
+          </div>
+    
+          {/* Navigation Buttons */}
           <div className="flex justify-between mt-4 gap-16">
             {currentStep > 1 && (
               <CustomButton
                 label="Previous"
                 onClick={handlePreviousStep}
-                className="bg-[#87CEEB]"
+                className="bg-[#87CEEB] text-[#4B5563]"
               />
             )}
             {currentStep < displayStep.length && (
               <CustomButton
                 disabled={!areAllFieldsFilled}
-                className={`py-2 px-3  rounded-lg ${
+                className={`py-2 px-3 rounded-lg ${
                   agreed
                     ? "bg-blue-600 text-white hover:bg-neutral-900"
                     : "bg-gray-400 text-gray-200 cursor-not-allowed"
@@ -458,7 +463,8 @@ const [message, setMessage] = useState(""); // For success/error messages
               />
             )}
           </div>
-        </>
+        </div>
+      </>
       ),
     },
 
@@ -466,117 +472,97 @@ const [message, setMessage] = useState(""); // For success/error messages
       title: "Verification",
       details: (
         <>
-        <Toaster/>
-          <div className="flex justify-between  ">
-            <h3 className="font-semibold text-xl">{dataset?.title}</h3>
-            <div>
-              <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
-                {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
-              </p>
-            </div>
-          </div>
-          <div className="pt-2 flex flex-wrap gap-2">
-            {Object.entries(dataset?.profiteers || {}).map(
-              ([profiteer, status], Pindex) => (
-                <div
-                  key={Pindex}
-                  className="bg-gray-800 rounded-lg px-1 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
-                >
-                  <img
-                    src={profiteerIcons[profiteer]}
-                    alt={`${profiteer} icon`}
-                    className="w-3 h-3"
-                  />
-                  <span>
-                    {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
-                  </span>
-                  {status ? (
-                    <FaCheck className="text-green-500" />
-                  ) : (
-                    <FaTimes className="text-red-500" />
-                  )}
-                </div>
-              )
-            )}
-          </div>
-          <div className="verification-section">
-            <h3 className="font-semibold text-xl mb-4 mt-4">
-              Please Verify your Details Here
-            </h3>
-            <h2>Steps</h2>
-            <p>
-              1. Click the institution type with which you want to download the
-              dataset.
-            </p>
-            <p>
-              2.Enter your email that matches the institution you chose on step
-              1. above.
-            </p>
-            <p>
-              {" "}
-              3.Verify your Email,then click on &quot;Verification Code&quot; to receive
-              your OTP.
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  type: "Company",
-                  icon: <FaBuilding />,
-                  description: "Business Email Required.",
-                },
-                {
-                  type: "Non-Profit",
-                  icon: <FaHandsHelping />,
-                  description: "NGO or .org Email Required.",
-                },
-                {
-                  type: "Student",
-                  icon: <FaUserGraduate />,
-                  description: "University/Educational Email Required.",
-                },
-                {
-                  type: "Public",
-                  icon: <FaUsers />,
-                  description: "Personal Email Required.",
-                },
-              ].map((card, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleCardClick(card.type)}
-                  className={`p-4 border ${
-                    selectedCard === card.type ? "bg-blue-300" : "bg-gray-100"
-                  } border-[#ADA8C3] rounded-md text-center cursor-pointer`}
-                >
-                  <div className="text-2xl mb-2 text-black">{card.icon}</div>
-                  <h4 className="font-semibold text-black text-lg">
-                    {card.type}
-                  </h4>
-                  <p className="text-sm text-gray-600">{card.description}</p>
-                </div>
-              ))}
-            </div>
+  <Toaster />
+  <div className="bg-white p-4 rounded-md shadow">
+    <div className="flex justify-between bg-white">
+      <h3 className="font-semibold text-xl text-[#4B5563]">{dataset?.title}</h3>
+      <div>
+        <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+          {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
+        </p>
+      </div>
+    </div>
 
-            <div className="pt-4">
-        <h4 className="font-semibold">Enter your Email Address</h4>
+    {/* Profiteers Section */}
+    <div className="pt-2 flex flex-wrap gap-2">
+      {Object.entries(dataset?.profiteers || {}).map(([profiteer, status], Pindex) => (
+        <div
+          key={Pindex}
+          className="bg-gray-800 rounded-lg px-2 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+        >
+          <img
+            src={profiteerIcons[profiteer]}
+            alt={`${profiteer} icon`}
+            className="w-3 h-3"
+          />
+          <span>
+            {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
+          </span>
+          {status ? (
+            <FaCheck className="text-green-500" />
+          ) : (
+            <FaTimes className="text-red-500" />
+          )}
+        </div>
+      ))}
+    </div>
+
+    {/* Verification Section */}
+    <div className="verification-section bg-white mt-6 p-4 rounded-md">
+      <h3 className="font-semibold text-xl text-[#4B5563] mb-4">
+        Please Verify your Details Here
+      </h3>
+      <h2 className="text-lg text-[#4B5563] font-semibold">Steps</h2>
+      <p className="text-[#4B5563]">1. Click the institution type with which you want to download the dataset.</p>
+      <p className="text-[#4B5563]">2. Enter your email that matches the institution you chose in step 1.</p>
+      <p className="text-[#4B5563]">
+  3. Verify your Email, then click &apos;Verification Code&apos; to receive your OTP.
+</p>
+
+      <div className="grid grid-cols-2 gap-4 mt-4">
+        {[
+          { type: "Company", icon: <FaBuilding />, description: "Business Email Required." },
+          { type: "Non-Profit", icon: <FaHandsHelping />, description: "NGO or .org Email Required." },
+          { type: "Student", icon: <FaUserGraduate />, description: "University/Educational Email Required." },
+          { type: "Public", icon: <FaUsers />, description: "Personal Email Required." },
+        ].map((card, index) => (
+          <div
+            key={index}
+            onClick={() => handleCardClick(card.type)}
+            className={`p-4 border ${
+              selectedCard === card.type ? "bg-blue-300" : "bg-gray-100"
+            } border-[#ADA8C3] rounded-md text-center cursor-pointer`}
+          >
+            <div className="text-2xl mb-2 text-[#4B5563]">{card.icon}</div>
+            <h4 className="font-semibold text-lg text-[#4B5563]">{card.type}</h4>
+            <p className="text-sm text-gray-600">{card.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Email Input */}
+      <div className="pt-4">
+        <h4 className="font-semibold text-[#4B5563]">Enter your Email Address</h4>
         <input
           name="email_address"
-          type="email_address"
+          type="email"
           value={formData.email_address}
           onChange={handleInputChange}
-          className="w-full border border-[#ADA8C3] bg-gray-100 text-black rounded-md p-2"
+          className="w-full border border-[#ADA8C3] bg-gray-100 text-[#4B5563] rounded-md p-2"
           placeholder="Enter your institutional email address here"
           disabled={isVerified}
         />
       </div>
 
+      {/* OTP Verification */}
       {codeSent && (
         <div className="pt-4">
-          <h4 className="font-semibold">Enter Verification Code</h4>
+          <h4 className="font-semibold text-[#4B5563]">Enter Verification Code</h4>
           <input
             type="text"
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
-            className="w-full border border-[#ADA8C3] bg-gray-100 text-black rounded-md p-2"
+            className="w-full border border-[#ADA8C3] bg-gray-100 text-[#4B5563] rounded-md p-2"
             placeholder="Enter OTP"
           />
         </div>
@@ -584,149 +570,163 @@ const [message, setMessage] = useState(""); // For success/error messages
 
       {errorMessage && <p className="text-red-500 pt-2">{errorMessage}</p>}
 
-      <button onClick={handleAction} disabled={loading} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">
-        {loading ? "Processing..." : codeSent ? "Verify OTP" : "Send OTP"}
-      </button>
-
-      {codeSent && !isVerified && (
+      {/* Buttons */}
+      <div className="flex flex-wrap gap-4 mt-4">
         <button
           onClick={handleAction}
-          disabled={!isResendEnabled}
-          className="ml-4 px-4 py-2 bg-gray-500 text-white rounded-md"
+          disabled={loading}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md"
         >
-          Resend Code
+          {loading ? "Processing..." : codeSent ? "Verify OTP" : "Send OTP"}
         </button>
-      )}
+
+        {codeSent && !isVerified && (
+          <button
+            onClick={handleAction}
+            disabled={!isResendEnabled}
+            className="px-4 py-2 bg-gray-500 text-white rounded-md"
+          >
+            Resend Code
+          </button>
+        )}
+      </div>
     </div>
 
-          <div className="flex justify-between mt-4 gap-16">
-            {currentStep > 1 && (
-              <CustomButton
-                label="Previous"
-                onClick={handlePreviousStep}
-                className="bg-[#87CEEB]"
-              />
-            )}
-            {currentStep < displayStep.length && (
-              <CustomButton
-                disabled={!isVerified}
-                className={`py-2 px-3  rounded-lg `}
-                label="Next"
-                onClick={handleNextStep}
-              />
-            )}
-          </div>
-        </>
+    {/* Navigation Buttons */}
+    <div className="flex justify-between mt-4 gap-16">
+      {currentStep > 1 && (
+        <CustomButton
+          label="Previous"
+          onClick={handlePreviousStep}
+          className="bg-[#87CEEB] text-[#4B5563]"
+        />
+      )}
+      {currentStep < displayStep.length && (
+        <CustomButton
+          disabled={!isVerified}
+          className={`py-2 px-3 rounded-lg ${
+            isVerified ? "bg-blue-600 text-white hover:bg-neutral-900" : "bg-gray-400 text-gray-200 cursor-not-allowed"
+          }`}
+          label="Next"
+          onClick={handleNextStep}
+        />
+      )}
+    </div>
+  </div>
+</>
+
       ),
     },
 
     License: {
       title: "License",
       details: (
-        <>
-          <div className="flex justify-between">
-            <h3 className="font-semibold text-xl">{dataset?.title}</h3>
-            <div>
-              <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
-                {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
-              </p>
-            </div>
-          </div>
-          <div className="pt-2 flex flex-wrap gap-2">
-            {Object.entries(dataset?.profiteers || {}).map(
-              ([profiteer, status], Pindex) => (
-                <div
-                  key={Pindex}
-                  className="bg-gray-800 rounded-lg px-1 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
-                >
-                  <img
-                    src={profiteerIcons[profiteer]}
-                    alt={`${profiteer} icon`}
-                    className="w-3 h-3"
-                  />
-                  <span>
-                    {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
-                  </span>
-                  {status ? (
-                    <FaCheck className="text-green-500" />
-                  ) : (
-                    <FaTimes className="text-red-500" />
-                  )}
-                </div>
-              )
-            )}
-          </div>
+       <>
+  <div className="bg-white p-4 rounded-md shadow">
+    {/* Title & Price Section */}
+    <div className="flex justify-between bg-white">
+      <h3 className="font-semibold text-xl text-[#4B5563]">{dataset?.title}</h3>
+      <div>
+        <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+          {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
+        </p>
+      </div>
+    </div>
 
-          <div className="pt-4">
-            <h4 className="font-semibold">License Agreement</h4>
-            <div className="mt-4">
-              <div className="bg-green-100 p-4 rounded-md">
-                <h5 className="font-semibold text-green-700 flex items-center">
-                  ✅ Allowed Uses
-                </h5>
-                <ul className="mt-2 text-sm text-green-700 space-y-1">
-                  <li className="flex items-center">✔ Research and Analysis</li>
-                  <li className="flex items-center">✔ Educational Projects</li>
-                  <li className="flex items-center">
-                    ✔ Social Good Initiatives
-                  </li>
-                  <li className="flex items-center">✔ Academic Publications</li>
-                </ul>
-              </div>
+    {/* Profiteers Section */}
+    <div className="pt-2 flex flex-wrap gap-2">
+      {Object.entries(dataset?.profiteers || {}).map(([profiteer, status], Pindex) => (
+        <div
+          key={Pindex}
+          className="bg-gray-800 rounded-lg px-2 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+        >
+          <img
+            src={profiteerIcons[profiteer]}
+            alt={`${profiteer} icon`}
+            className="w-3 h-3"
+          />
+          <span>{profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}</span>
+          {status ? (
+            <FaCheck className="text-green-500" />
+          ) : (
+            <FaTimes className="text-red-500" />
+          )}
+        </div>
+      ))}
+    </div>
 
-              <div className="bg-red-100 p-4 rounded-md mt-4">
-                <h5 className="font-semibold text-red-700 flex items-center">
-                  ❌ Restricted Uses
-                </h5>
-                <ul className="mt-2 text-sm text-red-700 space-y-1">
-                  <li className="flex items-center">✖ Commercial Products</li>
-                  <li className="flex items-center">✖ Data Redistribution</li>
-                  <li className="flex items-center">✖ Derivative Databases</li>
-                  <li className="flex items-center">✖ Resale or Licensing</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    {/* License Agreement Section */}
+    <div className="pt-4">
+      <h4 className="font-semibold text-[#4B5563]">License Agreement</h4>
+      <div className="mt-4">
+        {/* Allowed Uses (Green) */}
+        <div className="bg-green-100 p-4 rounded-md">
+          <h5 className="font-semibold text-green-700 flex items-center">
+            ✅ Allowed Uses
+          </h5>
+          <ul className="mt-2 text-sm text-green-700 space-y-1">
+            <li className="flex items-center">✔ Research and Analysis</li>
+            <li className="flex items-center">✔ Educational Projects</li>
+            <li className="flex items-center">✔ Social Good Initiatives</li>
+            <li className="flex items-center">✔ Academic Publications</li>
+          </ul>
+        </div>
 
-          {/* Agreement Checkbox */}
-          <div className="mt-4">
-            <label className="flex items-center text-sm text-gray-700">
-              <input
-                type="checkbox"
-                className="mr-2"
-                checked={agreed}
-                onChange={() => {
-                  setAgreed(!agreed);
-                  console.log("Agreed state:", !agreed);
-                }}
-              />
-              I understand and agree to these terms, and acknowledge that
-              dataset access may be revoked if terms are breached.
-            </label>
-          </div>
+        {/* Restricted Uses (Red) */}
+        <div className="bg-red-100 p-4 rounded-md mt-4">
+          <h5 className="font-semibold text-red-700 flex items-center">
+            ❌ Restricted Uses
+          </h5>
+          <ul className="mt-2 text-sm text-red-700 space-y-1">
+            <li className="flex items-center">✖ Commercial Products</li>
+            <li className="flex items-center">✖ Data Redistribution</li>
+            <li className="flex items-center">✖ Derivative Databases</li>
+            <li className="flex items-center">✖ Resale or Licensing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-          <div className="flex justify-between mt-4 gap-16">
-            {currentStep > 1 && (
-              <CustomButton
-                label="Previous"
-                onClick={handlePreviousStep}
-                className="bg-n-16 "
-              />
-            )}
-            {currentStep < displayStep.length && (
-              <CustomButton
-                disabled={!agreed}
-                className={`py-2 px-3  rounded-lg ${
-                  agreed
-                    ? "bg-blue-600 text-white hover:bg-neutral-900"
-                    : "bg-gray-400 text-gray-200 cursor-not-allowed"
-                }`}
-                label="Next"
-                onClick={handleNextStep}
-              />
-            )}
-          </div>
-        </>
+    {/* Agreement Checkbox */}
+    <div className="mt-4">
+      <label className="flex items-center text-sm text-[#4B5563]">
+        <input
+          type="checkbox"
+          className="mr-2"
+          checked={agreed}
+          onChange={() => {
+            setAgreed(!agreed);
+            console.log("Agreed state:", !agreed);
+          }}
+        />
+        I understand and agree to these terms, and acknowledge that dataset
+        access may be revoked if terms are breached.
+      </label>
+    </div>
+
+    {/* Navigation Buttons */}
+    <div className="flex justify-between mt-4 gap-16">
+      {currentStep > 1 && (
+        <CustomButton
+          label="Previous"
+          onClick={handlePreviousStep}
+          className="bg-[#87CEEB] text-[#4B5563]"
+        />
+      )}
+      {currentStep < displayStep.length && (
+        <CustomButton
+          disabled={!agreed}
+          className={`py-2 px-3 rounded-lg ${
+            agreed ? "bg-blue-600 text-white hover:bg-neutral-900" : "bg-gray-400 text-gray-200 cursor-not-allowed"
+          }`}
+          label="Next"
+          onClick={handleNextStep}
+        />
+      )}
+    </div>
+  </div>
+</>
+
       ),
     },
 
@@ -741,97 +741,96 @@ const [message, setMessage] = useState(""); // For success/error messages
 
     Download: {
       title: "Download",
-      details: (
-        <>
-          <div className="flex justify-between">
-            <h3 className="font-semibold text-xl">{dataset?.title}</h3>
-            <div>
-              <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
-                {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
-              </p>
-            </div>
-          </div>
-          <div className="pt-2 flex flex-wrap gap-2">
-            {Object.entries(dataset?.profiteers || {}).map(
-              ([profiteer, status], Pindex) => (
-                <div
-                  key={Pindex}
-                  className="bg-gray-800 rounded-lg px-1 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
-                >
-                  <img
-                    src={profiteerIcons[profiteer]}
-                    alt={`${profiteer} icon`}
-                    className="w-3 h-3"
-                  />
-                  <span>
-                    {profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}
-                  </span>
-                  {status ? (
-                    <FaCheck className="text-green-500" />
-                  ) : (
-                    <FaTimes className="text-red-500" />
-                  )}
-                </div>
-              )
+   details: (
+    <>
+    <div className="bg-white p-4 rounded-md shadow">
+      {/* Title & Price Section */}
+      <div className="flex justify-between">
+        <h3 className="font-semibold text-xl text-[#4B5563]">{dataset?.title}</h3>
+        <div>
+          <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+            {dataset?.is_premium ? `$${dataset?.price}` : "Free"}
+          </p>
+        </div>
+      </div>
+  
+      {/* Profiteers Section */}
+      <div className="pt-2 flex flex-wrap gap-2">
+        {Object.entries(dataset?.profiteers || {}).map(([profiteer, status], Pindex) => (
+          <div
+            key={Pindex}
+            className="bg-gray-800 rounded-lg px-2 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+          >
+            <img
+              src={profiteerIcons[profiteer]}
+              alt={`${profiteer} icon`}
+              className="w-3 h-3"
+            />
+            <span>{profiteer.charAt(0).toUpperCase() + profiteer.slice(1)}</span>
+            {status ? (
+              <FaCheck className="text-green-500" />
+            ) : (
+              <FaTimes className="text-red-500" />
             )}
           </div>
-          <div className="flex flex-col items-center p-4   bg-[#0E0C15] max-w-full mx-auto mt-4">
-            <div className="w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10 text-green-500"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586l-3.293-3.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold">You are Approved!</h2>
-            <p className="text-gray-100 text-center">
-              Thank you! You are approved to download this dataset.
-            </p>
-            <p className="text-sm text-white bg-gray-800 p-2 rounded-md mt-6 text-center">
-              Remember: This dataset is for non-commercial, educational use
-              only. By downloading, you agree to notify the creator if you use
-              it in publications or derivative works.
-            </p>
-          </div>
-
-          <div className="justify-self-center p-4  mb-4 ">
-            <h3 className="text-lg font-semibold text-center">
-              Available Formats
-            </h3>
-            <div className="flex flex-row gap-4 mt-2 text-black">
-              {availableFormats.map((format) => (
-                <label
-                  key={format.value}
-                  className={`flex items-center p-3 border rounded-md cursor-pointer ${
-                    selectedFormat === format.value
-                      ? "bg-gray-100"
-                      : "bg-gray-100"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="format"
-                    value={format.value}
-                    checked={selectedFormat === format.value}
-                    onChange={() => handleFormatChange(format.value)}
-                    className="appearance-none rounded-full w-3 h-3 border mr-4 border-gray-300 checked:bg-gray-500 checked:border-transparent"
-                  />
-                  {format.name}
-
-                  {/* ({format.size}) */}
-                </label>
-              ))}
-            </div>
-          </div>
-          <div className="mt-6 text-center">
-        <h3 className="text-lg font-semibold text-white">Rate This Dataset</h3>
+        ))}
+      </div>
+  
+      {/* Approval Section */}
+      <div className="flex flex-col items-center p-4 bg-gray-100 max-w-full mx-auto mt-4 rounded-md shadow">
+        <div className="w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-10 w-10 text-green-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586l-3.293-3.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+        <h2 className="text-lg font-semibold text-[#4B5563]">You are Approved!</h2>
+        <p className="text-gray-700 text-center">
+          Thank you! You are approved to download this dataset.
+        </p>
+        <p className="text-sm text-gray-700 bg-gray-200 p-2 rounded-md mt-4 text-center">
+          Remember: This dataset is for non-commercial, educational use only. By downloading, you agree to notify the creator if you use it in publications or derivative works.
+        </p>
+      </div>
+  
+      {/* Available Formats */}
+      <div className="justify-self-center p-4 mb-4">
+        <h3 className="text-lg font-semibold text-center text-[#4B5563]">
+          Available Formats
+        </h3>
+        <div className="flex flex-row gap-4 mt-2 text-[#4B5563]">
+          {availableFormats.map((format) => (
+            <label
+              key={format.value}
+              className={`flex items-center p-3 border rounded-md cursor-pointer ${
+                selectedFormat === format.value ? "bg-gray-200" : "bg-gray-100"
+              }`}
+            >
+              <input
+                type="radio"
+                name="format"
+                value={format.value}
+                checked={selectedFormat === format.value}
+                onChange={() => handleFormatChange(format.value)}
+                className="appearance-none rounded-full w-3 h-3 border mr-4 border-gray-300 checked:bg-gray-500 checked:border-transparent"
+              />
+              {format.name}
+            </label>
+          ))}
+        </div>
+      </div>
+  
+      {/* Rate This Dataset */}
+      <div className="mt-6 text-center">
+        <h3 className="text-lg font-semibold text-[#4B5563]">Rate This Dataset</h3>
         <div className="flex justify-center mt-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <svg
@@ -848,43 +847,45 @@ const [message, setMessage] = useState(""); // For success/error messages
             </svg>
           ))}
         </div>
-
-        {/* Message after rating */}
-        {message && <p className="text-sm text-green-400 mt-2">{message}</p>}
+        {message && <p className="text-sm text-green-500 mt-2">{message}</p>}
       </div>
-
-          <div className="flex justify-between mt-4 mb-4 gap-16 w-full">
-            {currentStep > 1 && (
-              <CustomButton
-                label="Back"
-                onClick={handlePreviousStep}
-                className=" "
-              />
-            )}
-
-            <CustomButton
-              label="Download"
-              onClick={() => handleDownload(dataset)}
-              disabled={downloading}
-            >
-              {downloading ? "Downloading..." : "⬇ Download"}
-            </CustomButton>
-
-            {currentStep < displayStep.length && (
-              <CustomButton
-                disabled={!agreed}
-                className={`py-2 px-3  rounded-lg ${
-                  agreed
-                    ? "bg-blue-600 text-white hover:bg-neutral-900"
-                    : "bg-gray-400 text-gray-200 cursor-not-allowed"
-                }`}
-                label="Next"
-                onClick={handleNextStep}
-              />
-            )}
-          </div>
-        </>
-      ),
+  
+      {/* Navigation & Download Buttons */}
+      <div className="flex justify-between mt-4 mb-4 gap-16 w-full">
+        {currentStep > 1 && (
+          <CustomButton
+            label="Back"
+            onClick={handlePreviousStep}
+            className="bg-gray-300 text-[#4B5563]"
+          />
+        )}
+  
+        <CustomButton
+          label="Download"
+          onClick={() => handleDownload(dataset)}
+          disabled={downloading}
+          className={`py-2 px-4 rounded-lg ${
+            downloading ? "bg-gray-400 text-gray-200 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-neutral-900"
+          }`}
+        >
+          {downloading ? "Downloading..." : "⬇ Download"}
+        </CustomButton>
+  
+        {currentStep < displayStep.length && (
+          <CustomButton
+            disabled={!agreed}
+            className={`py-2 px-3 rounded-lg ${
+              agreed ? "bg-blue-600 text-white hover:bg-neutral-900" : "bg-gray-400 text-gray-200 cursor-not-allowed"
+            }`}
+            label="Next"
+            onClick={handleNextStep}
+          />
+        )}
+      </div>
+    </div>
+  </>
+  
+),
     },
   };
 
