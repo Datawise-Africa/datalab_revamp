@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import Section from "../../components/HomePage/Section";
 import DatasetHeader from "./DatasetHeader";
 import FilterIcon from "./FilterIcon";
 import SortData from "./SortData";

@@ -40,15 +40,6 @@ const Header = () => {
       }
     }
   };
-
-  const handleExploreDatasetsClick = () => {
-    window.open(
-      "http://datalab.datawiseafrica.com",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
   // max-w-7xl mx-auto
 
   return (
