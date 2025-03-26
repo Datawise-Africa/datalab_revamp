@@ -6,7 +6,7 @@ const CustomButton = ({ disabled, label, className, onClick}) => {
            
             onClick={onClick}
             disabled={disabled}
-            className={`flex items-center justify-center w-full bg-[#474060] text-[#E5E7EB] rounded-xl px-2 py-3 cursor-pointer hover:bg-[#1B1B2E] ${className} disabled:bg-gray-400 disabled:text-white`}
+            className={`flex items-center justify-center w-full bg-[#ddeeff] text-[#0E0C15] rounded-xl px-2 py-3 cursor-pointer hover:bg-[#FFC876] ${className} disabled:bg-gray-400 disabled:text-white`}
         >
             {label}
            

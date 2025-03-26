@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import Section from "../../components/HomePage/Section";
 import DatasetHeader from "./DatasetHeader";
 import FilterIcon from "./FilterIcon";
 import SortData from "./SortData";
@@ -232,8 +231,8 @@ const DataCatalog = () => {
   };
 
   return (
-    <Section className="flex items-center justify-center">
-      <div className="container w-full mt-15">
+    <div className="container mx-auto flex items-center py-16 lg:py-8 justify-center">
+      <div className="w-full mt-15">
         <DatasetHeader
           handleAuthModalToggle={handleAuthModalToggle}
           onSearchResults={handleSearchResults}
@@ -250,7 +249,7 @@ const DataCatalog = () => {
             <FilterIcon />
           </div>
 
-          <div className="ml-auto">
+          <div className="ml-auto mr-3">
             <SortData
               sortIsOpen={sortIsOpen}
               toggleDropdown={() => setSortIsOpen(!sortIsOpen)}
@@ -296,7 +295,7 @@ const DataCatalog = () => {
           close={downloadDataModal.close}
         />
       )}
-    </Section>
+    </div>
   );
 };
 

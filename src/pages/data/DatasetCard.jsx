@@ -42,7 +42,7 @@ const DatasetCard = ({
       <div className="flex justify-between">
         <h3 className="font-semibold text-xl">{dataset.title}</h3>
         <div>
-          <p className="bg-[#F3F4F6] text-[#0E0C15] px-2 rounded-md">
+          <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
             {dataset.is_premium ? `$${dataset.price}` : "Free"}
           </p>
         </div>

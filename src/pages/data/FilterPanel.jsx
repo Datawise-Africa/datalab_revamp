@@ -72,7 +72,7 @@ const FilterPanel = ({ filters, setFilters }) => {
         
         <button 
           onClick={handleManualReset} 
-          className="mt-8 p-2 bg-[#26A37E]  text-white rounded-lg shadow-md hover:bg-[#F7FDFA] transition w-1/2">
+          className="mt-8 p-2 bg-[#26A37E]  text-[#E5E7EB] rounded-lg shadow-md hover:bg-[#2a4e43] transition w-1/2">
           Reset Filters
         </button>
       </div>

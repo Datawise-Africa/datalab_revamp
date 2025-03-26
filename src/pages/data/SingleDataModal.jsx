@@ -55,11 +55,11 @@ const SingleDataModal = ({ dataset }) => {
       isOpen={dataModal.isOpen}
       close={dataModal.close}
       content={
-        <div className="border border-[#ADA8C3] p-6 rounded-xl shadow-md">
+        <div className="border border-[#ADA8C3] p-6 rounded-xl  bg-[#FFFFFF] shadow-md">
           {/* Title and Pricing */}
           <div className="flex justify-between">
-            <h3 className="font-bold text-xl">{title}</h3>
-            <p className="bg-[#ddeeff] text-[#0E0C15] px-2 rounded-md">
+            <h3 className="font-bold text-[#4B5563] text-xl">{title}</h3>
+            <p className="bg-[#F3F4F6] text-[#101827] px-2 rounded-md">
               {is_premium ? `$${price}` : "Free"}
             </p>
           </div>
@@ -75,14 +75,14 @@ const SingleDataModal = ({ dataset }) => {
           </div>
 
           {/* Description */}
-          <p className="pt-2">{description}</p>
+          <p className="pt-2 text-[#4B5563]">{description}</p>
 
           {/* Tags */}
           <div className="pt-2 flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <div
                 key={index}
-                className="bg-gray-800 text-[#ddeeff] rounded-lg px-3 py-1 text-xs"
+                className=" text-[#0F2542] rounded-lg px-3 py-1 text-xs"
               >
                 {tag}
               </div>
@@ -95,7 +95,7 @@ const SingleDataModal = ({ dataset }) => {
               ([profiteer, status], index) => (
                 <div
                   key={index}
-                  className="bg-gray-800 rounded-lg px-1 py-1 text-xs text-[#FFFFFF] flex items-center gap-1"
+                  className="bg-[#EFFDF4] rounded-lg px-1 py-1 text-xs text-[#101827] flex items-center gap-1"
                 >
                   <img
                     src={profiteerIcons[profiteer]}
@@ -116,7 +116,7 @@ const SingleDataModal = ({ dataset }) => {
           </div>
           {/* ⭐ Star Rating Display */}
           <div className="mt-4">
-            <h4 className="text-lg font-semibold">Dataset Rating:</h4>
+            <h4 className="text-lg text-[#0F2542] font-semibold">Dataset Rating:</h4>
             {review_count > 0 ? (
               <div className="flex items-center space-x-2">
                 <div className="flex">
@@ -127,7 +127,7 @@ const SingleDataModal = ({ dataset }) => {
                 </p>
               </div>
             ) : (
-              <p className="text-gray-500">No ratings yet</p>
+              <p className="text-[#0F2542]">No ratings yet</p>
             )}
           </div>
 
@@ -147,19 +147,20 @@ const SingleDataModal = ({ dataset }) => {
           <hr className="mt-8 border-t border-[#ADA8C3] -mx-6" />
           <div className="grid grid-cols-2 gap-4">
   <div>
-    <h4 className="text-lg font-semibold">Covered Regions</h4>
-    <p className="pt-2">
+    <h4 className="text-lg text-[#0F2542] font-semibold">Covered Regions</h4>
+    <p className="pt-2 text-[#0F2542]">
       {covered_regions.map((regionObj) => regionObj.region).join(", ")}
     </p>
   </div>
   <div>
-    <h4 className="text-lg font-semibold">Keywords</h4>
-<p>    {keywords.map((keywordObj) => keywordObj.keyword).join(", ")} </p>
+    <h4 className="text-lg  text-[#0F2542] font-semibold">Keywords</h4>
+<p className="text-[#0F2542]">    {keywords.map((keywordObj) => keywordObj.keyword).join(", ")} </p>
   </div>
 </div>
 
           {/* Dataset Preview */}
-          <Section title="Dataset Preview">
+          <Section >
+            <h4 className="text-lg text-[#0F2542] font-semibold">Dataset Review</h4>
             <DatasetPreview dataFiles={data_files} />
           </Section>
 
@@ -171,9 +172,9 @@ const SingleDataModal = ({ dataset }) => {
 };
 
 const MetadataItem = ({ icon, label }) => (
-  <div className="flex">
+  <div className="flex text-[#0F2542]">
     <img src={icon} alt={label} className="w-4 h-4" />
-    <span className="ml-1 text-[#ddeeff] text-xs">{label}</span>
+    <span className="ml-1  text-xs">{label}</span>
   </div>
 );
 
