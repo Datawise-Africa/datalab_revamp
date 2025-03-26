@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import datawise from "/assets/logo-round.png";
+import datawise from "/assets/logo-round.svg";
 import MenuSvg from "../../assets/svg/MenuSvg";
 import { navigation } from "../../constants";
 import Button from "../HomePage/Button";
@@ -61,31 +61,31 @@ const Header = () => {
   }
 
   return (
-    <Section id="header" className="!px-0 !py-0">
+    <Section id="header" className=" !px-0 !py-0 ">
       <div
-        className={`fixed top-0 left-0 lg:left-20 w-full z-50 lg:backdrop-blur-sm ${
-          openNavigation ? "bg-[#0E0C15]" : "bg-[#0E0C15]/90 backdrop-blur-sm"
+        className={`fixed top-0 left-0 lg:left-0 lg:mt-4 w-full z-50 lg:backdrop-blur-sm  ${
+          openNavigation ? "bg-[#0E0C15]" : "bg-white backdrop-blur-sm min-w-screen "
         }`}
       >
-        <div className="flex items-center px-5 lg:px-15 xl:px-20 max-lg:py-4">
+        <div className="flex items-center px-5 lg:px-10 xl:px-20 max-lg:py-4 gap-0">
           <a href="/" className="w-[12rem] xl:mr-12">
             <img
               className="lg:ml-20"
               src={datawise}
               loading="lazy"
               alt="Datawise"
-              width={80}
-              height={20}
+              width={500}
+              height={180}
             />
           </a>
 
           <nav
             className={`${
               openNavigation ? "flex" : "hidden"
-            } fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent`}
+            } fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent `}
           >
             <div
-              className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row"
+              className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row "
               ref={dropdownRef}
             >
                 {navigation.map((item) => {
@@ -94,7 +94,7 @@ const Header = () => {
                     }
 
                     return (
-                        <div key={item.id} className="relative group">
+                        <div key={item.id} className="relative group ">
                             <Link
                             to={item.url}
                             onClick={(e) => handleNavItemClick(e, item)}

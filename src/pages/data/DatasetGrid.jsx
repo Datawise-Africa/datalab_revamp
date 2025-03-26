@@ -37,7 +37,7 @@ const DatasetGrid = ({ datasets, handleSingleDataModal, handleDownloadDataClick 
       {/* Pagination Controls */}
       <div className='flex justify-center mt-16 ml-20'>
         <button
-          className=' className="mt-8 p-2 bg-[#0E0C15]  text-white text-lg rounded-lg shadow-md hover:bg-gray-600 transition '
+          className=' className="mt-8 p-2  text-[#101827] text-xl rounded-lg font-bold hover:text-green-800 transition '
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
         >
@@ -45,7 +45,7 @@ const DatasetGrid = ({ datasets, handleSingleDataModal, handleDownloadDataClick 
         </button>
         <span className='px-4 py-2'>{`Page ${currentPage} of ${totalPages}`}</span>
         <button
-          className=' className="mt-8 p-2 bg-[#0E0C15] text-white text-lg rounded-lg shadow-md hover:bg-gray-600 transition '
+          className=' className="mt-8 p-2  text-[#101827] text-xl font-bold rounded-lg  hover:text-green-800 transition '
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
