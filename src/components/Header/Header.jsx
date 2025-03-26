@@ -1,33 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import datawise from "/assets/logo-round.svg";
-import MenuSvg from "../../assets/svg/MenuSvg";
+import datawise_logo from "/assets/datawise-logo-dark.png";
+// import dwise_logo from "/assets/datawise-logo-icon-dark.svg";
 import { navigation } from "../../constants";
-import Button from "../HomePage/Button";
-import { HamburgerMenu } from "../designs/Header";
-import Section from "../HomePage/Section";
-import { useAuth } from "../../storage/AuthProvider";
-import AuthModal from "../Modals/AuthModals/AuthModal";
-import useAuthModal from "../../hooks/useAuthModal";
 
 const Header = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
   const [isNavItemDropdown, setIsNavItemDropdown] = useState(false);
-  const [navUrl, setNavUrl] = useState("");
-  const dropdownRef = useRef(null); // For handling outside clicks
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const authModal = useAuthModal();
-  const { state } = useAuth();
-
-  const pathname = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsNavItemDropdown(false);
       }
     };
@@ -39,106 +26,123 @@ const Header = () => {
 
   const toggleNavigation = () => {
     setOpenNavigation(!openNavigation);
-  }
+  };
 
   const handleNavItemClick = (e, item) => {
     e.preventDefault();
 
-    if (item.requiresAuth && !state.userId) {
-        authModal.open();
-        setNavUrl(item.url);
-        return;
-    }
-
     if (item.hasDropdown) {
-        setIsNavItemDropdown(!isNavItemDropdown)
+      setIsNavItemDropdown(!isNavItemDropdown);
     } else {
-        navigate(item.url);
-        if (openNavigation) {
-            toggleNavigation();
-        }
+      navigate(item.url);
+      if (openNavigation) {
+        toggleNavigation();
+      }
     }
-  }
+  };
+
+  const handleExploreDatasetsClick = () => {
+    window.open(
+      "http://datalab.datawiseafrica.com",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  // max-w-7xl mx-auto
 
   return (
-    <Section id="header" className=" !px-0 !py-0 ">
+    <div className="bg-[#0F2542] text-[#E5E7EB]">
       <div
-        className={`fixed top-0 left-0 lg:left-0 lg:mt-4 w-full z-50 lg:backdrop-blur-sm  ${
-          openNavigation ? "bg-[#0E0C15]" : "bg-white backdrop-blur-sm min-w-screen "
+        className={`fixed top-0 left-0 w-full z-50 lg:backdrop-blur-sm ${
+          openNavigation ? "bg-[#0F2542]" : "bg-[#0F2542]/90 backdrop-blur-sm"
         }`}
       >
-        <div className="flex items-center px-5 lg:px-10 xl:px-20 max-lg:py-4 gap-0">
-          <a href="/" className="w-[12rem] xl:mr-12">
+        <div className="container mx-auto flex items-center justify-between px-5 lg:px-8 max-lg:py-4">
+          <Link to="/" className="w-[12rem]">
             <img
-              className="lg:ml-20"
-              src={datawise}
+              src={datawise_logo}
+              alt="Datawise logo"
               loading="lazy"
-              alt="Datawise"
-              width={500}
-              height={180}
+              width={180}
+              height={20}
             />
-          </a>
+          </Link>
 
-          <nav
-            className={`${
-              openNavigation ? "flex" : "hidden"
-            } fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent `}
+          {/* Mobile hamburger menu */}
+          <button
+            className="lg:hidden text-white"
+            onClick={toggleNavigation}
+            aria-label="Toggle navigation menu"
           >
-            <div
-              className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row "
-              ref={dropdownRef}
-            >
-                {navigation.map((item) => {
-                    if (item.isLoggedIn && !state.userId) {
-                        return null;
-                    }
+            {openNavigation ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            )}
+          </button>
 
-                    return (
-                        <div key={item.id} className="relative group ">
-                            <Link
-                            to={item.url}
-                            onClick={(e) => handleNavItemClick(e, item)}
-                            className={`block relative font-code text-2xl text-n-14 transition-colors hover:text-color-1 ${
-                                item.onlyMobile ? "lg:hidden" : ""
-                              } px-6 py-4 md:py-4 lg:py-4 lg:-mr-0.25 lg:text-md lg:font-semibold ${
-                                item.url === pathname.pathname
-                                  ? "border-b-4 border-n-14 text-n-14 font-bold"
-                                  : "text-n-14"
-                              }`}
-                            >
-                                {item.title}
-                            </Link>
-                            {item.hasDropdown && (
-                              <div
-                                className={`absolute z-10 top-full left-0 mt-1 w-full bg-[#0E0C15] border border-[#3F3A52] rounded-lg shadow-lg group-hover:block`}
-                              >
-                                {item.dropdownItems.map((dropdownItem) => (
-                                  <Link
-                                    key={dropdownItem.id}
-                                    to={dropdownItem.url}
-                                    className="block px-4 py-3 text-sm text-[#ddeeff] hover:text-[#004176]"
-                                    onClick={() => {
-                                      setIsNavItemDropdown(false);
-                                    }}
-                                  >
-                                    {dropdownItem.title}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
-            <HamburgerMenu />
-          </nav>
-          <Button className="ml-auto lg:hidden px-3" onClick={toggleNavigation}>
-            <MenuSvg openNavigation={openNavigation}/>
-          </Button>
+          {/* Navigation and button container */}
+          <div className={`
+            ${openNavigation ? "flex" : "hidden"} 
+            lg:flex lg:items-center lg:justify-between lg:flex-1
+            fixed lg:static top-[4rem] left-0 right-0 bottom-0 
+            bg-[#0F2542] lg:bg-transparent
+            flex-col lg:flex-row
+            pt-8 lg:pt-0
+          `}>
+            <nav className="flex flex-col lg:flex-row items-center lg:mx-auto">
+              <div
+                className="relative z-2 flex flex-col items-center lg:flex-row"
+                ref={dropdownRef}
+              >
+                {navigation.map((item) => (
+                  <div key={item.id} className="relative group mb-4 lg:mb-0">
+                    <Link
+                      to={item.url}
+                      className={`text-white px-4 py-2 ${
+                        item.url === pathname
+                          ? "text-white"
+                          : "text-gray-400 hover:text-gray-300"
+                      } group-hover:text-gray-300`}
+                      onClick={(e) => handleNavItemClick(e, item)}
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
-      <AuthModal navUrl={navUrl} />
-    </Section>
+    </div>
   );
 };
 
