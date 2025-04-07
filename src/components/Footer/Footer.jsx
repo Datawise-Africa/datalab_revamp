@@ -22,7 +22,7 @@ const Footer = () => {
           <div>
             <div className="py-3">
               <a
-                href="https://datawiseafrica.netlify.app"
+                href="https://datawiseafrica.com"
                 className="block w-[12rem]"
                 target="_blank"
                 rel="noopener noreferrer"
